@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 const LoginCard = () => {
+  const [password, setpassword] = useState("");
+
+  const [visible, setvisible] = useState(false);
+
   return (
     <div>
       <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-96 border p-6 shadow-lg">
-
         <legend className="fieldset-legend text-2xl font-bold mb-2">
           Login
         </legend>
@@ -15,18 +19,23 @@ const LoginCard = () => {
           className="input input-bordered w-full"
           placeholder="Enter your email"
         />
+        <div className="relative w-full">
+          <label className="label text-sm mt-3">Password</label>
+          <input
+            type={visible ? "text" : "password"}
+            className="input input-bordered w-full pr-10"
+            onChange={(e) => setpassword(e.target.value)}
+            placeholder="Enter your password"
+          />
+          <div
+            className="absolute inset-y-0 right-3 flex items-center pt-8 cursor-pointer text-2xl"
+            onClick={() => setvisible(!visible)}
+          >
+            {visible ? <BsEye /> : <BsEyeSlash />}
+          </div>
+        </div>
 
-        <label className="label text-sm mt-3">Password</label>
-        <input
-          type="password"
-          className="input input-bordered w-full"
-          placeholder="Enter your password"
-        />
-
-        <button className="btn btn-neutral mt-5 w-full">
-          Login
-        </button>
-
+        <button className="btn btn-neutral mt-5 w-full">Login</button>
       </fieldset>
     </div>
   );
