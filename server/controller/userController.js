@@ -1,5 +1,6 @@
 const User = require("../model/userModel");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const signup = async (req, res) => {
   try {
@@ -30,18 +31,28 @@ const signup = async (req, res) => {
     });
 
     await newUser.save();
+
+    const token = jwt.sign(
+      {
+        _id: newUser._id,
+        username: newUser.username,
+        email: newUser.email,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" },
+    );
+
+    
   } catch (error) {}
 };
 
-
 //login function
 
-
 const login = async (req, res) => {
-  try { 
-    const {email, password} = req.body;
+  try {
+    const { email, password } = req.body;
 
-    if (!user || !password){
+    if (!user || !password) {
       return res.status(400).json({
         message: "Please fill all the feilds",
         success: false,
@@ -50,20 +61,20 @@ const login = async (req, res) => {
 
     // find user
 
-    const user = await user.findOne({email});
+    const user = await user.findOne({ email });
 
-    if (!user){
+    if (!user) {
       return res.status(404).json({
         message: "user not found",
         success: false,
       });
     }
 
-    // validate password 
+    // validate password
 
     const isMatch = await bcrypt.compare(password, user.password);
 
-    if(!isMatch){
+    if (!isMatch) {
       return res.status(400).json({
         message: "Invalid password",
         success: false,
@@ -74,8 +85,8 @@ const login = async (req, res) => {
       message: "login successfull",
       success: true,
       user,
-    })
-  }catch (error) {
+    });
+  } catch (error) {
     return res.status(500).json({
       message: `server error${error}`,
       success: false,
