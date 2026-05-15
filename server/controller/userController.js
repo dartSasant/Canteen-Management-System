@@ -42,7 +42,16 @@ const signup = async (req, res) => {
       { expiresIn: "1d" },
     );
 
-    
+    res.status(201).json({
+      success: true,
+      token,
+      user: {
+        _id: newUser._id,
+        username: newUser.username,
+        email: newUser.email,
+      },
+    });
+
   } catch (error) {}
 };
 
