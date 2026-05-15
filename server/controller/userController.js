@@ -33,6 +33,10 @@ const signup = async (req, res) => {
   } catch (error) {}
 };
 
+
+//login function
+
+
 const login = async (req, res) => {
   try { 
     const {email, password} = req.body;
@@ -61,7 +65,7 @@ const login = async (req, res) => {
 
     if(!isMatch){
       return res.status(400).json({
-        message: "invalid password",
+        message: "Invalid password",
         success: false,
       });
     }
@@ -73,7 +77,7 @@ const login = async (req, res) => {
     })
   }catch (error) {
     return res.status(500).json({
-      message: "server error",
+      message: `server error${error}`,
       success: false,
     });
   }
