@@ -1,9 +1,9 @@
-import LoginCard from "./LoginCard";
+import RegisterCard from "./register";
 
 const App = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-200">
-      <LoginCard />
+    <div>
+      <RegisterCard />
     </div>
   );
 };

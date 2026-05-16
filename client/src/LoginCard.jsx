@@ -7,7 +7,7 @@ const LoginCard = () => {
   const [visible, setvisible] = useState(false);
 
   return (
-    <div>
+    <div min-h-screen flex items-center justify-center bg-base-200>
       <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-96 border p-6 shadow-lg">
         <legend className="fieldset-legend text-2xl font-bold mb-2">
           Login
@@ -36,6 +36,10 @@ const LoginCard = () => {
         </div>
 
         <button className="btn btn-neutral mt-5 w-full">Login</button>
+
+        <div className="flex justify-center text-lg text-blue-500 pt-4 ">
+          <a href="">Create new account</a>
+        </div>
       </fieldset>
     </div>
   );
