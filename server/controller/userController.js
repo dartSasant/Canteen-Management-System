@@ -95,6 +95,28 @@ const login = async (req, res) => {
       success: true,
       user,
     });
+
+    const token = jwt.login(
+      {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+      },
+      process.env.JWT_SECRET,
+      {expiresIn: "1d"},
+    );
+
+    res.status(200).json({
+      message: "login successfull",
+      success: true,
+      token,
+      user: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+      },
+    });
+
   } catch (error) {
     return res.status(500).json({
       message: `server error${error}`,
