@@ -42,6 +42,19 @@ const signup = async (req, res) => {
       { expiresIn: "1d" },
     );
 
+<<<<<<< HEAD
+    return res.status(201).json({
+      success: true,
+      message: `Register Successful`,
+      token,
+      user: {
+        _id: newUser.id,
+        username: newUser.username,
+        email: newUser.email,
+        role: newUser.role,
+      },
+    });
+=======
     res.status(201).json({
       success: true,
       token,
@@ -52,6 +65,7 @@ const signup = async (req, res) => {
       },
     });
 
+>>>>>>> 25588736c654058b5f0674c1e906f817e85c8312
   } catch (error) {}
 };
 
@@ -96,6 +110,19 @@ const login = async (req, res) => {
       user,
     });
 
+<<<<<<< HEAD
+    return res.status(201).json({
+      success: true,
+      message: `Register Successful`,
+      token,
+      user: {
+        _id: newUser.id,
+        username: newUser.username,
+        email: newUser.email,
+        role: newUser.role,
+      },
+    });
+=======
     const token = jwt.login(
       {
         _id: user._id,
@@ -117,6 +144,7 @@ const login = async (req, res) => {
       },
     });
 
+>>>>>>> 25588736c654058b5f0674c1e906f817e85c8312
   } catch (error) {
     return res.status(500).json({
       message: `server error${error}`,
