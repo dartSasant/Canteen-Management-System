@@ -42,7 +42,17 @@ const signup = async (req, res) => {
       { expiresIn: "1d" },
     );
 
-    
+    return res.status(201).json({
+      success: true,
+      message: `Register Successful`,
+      token,
+      user: {
+        _id: newUser.id,
+        username: newUser.username,
+        email: newUser.email,
+        role: newUser.role,
+      },
+    });
   } catch (error) {}
 };
 
@@ -85,6 +95,18 @@ const login = async (req, res) => {
       message: "login successfull",
       success: true,
       user,
+    });
+
+    return res.status(201).json({
+      success: true,
+      message: `Register Successful`,
+      token,
+      user: {
+        _id: newUser.id,
+        username: newUser.username,
+        email: newUser.email,
+        role: newUser.role,
+      },
     });
   } catch (error) {
     return res.status(500).json({
