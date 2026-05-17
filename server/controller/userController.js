@@ -42,6 +42,7 @@ const signup = async (req, res) => {
       { expiresIn: "1d" },
     );
 
+<<<<<<< HEAD
     return res.status(201).json({
       success: true,
       message: `Register Successful`,
@@ -53,6 +54,18 @@ const signup = async (req, res) => {
         role: newUser.role,
       },
     });
+=======
+    res.status(201).json({
+      success: true,
+      token,
+      user: {
+        _id: newUser._id,
+        username: newUser.username,
+        email: newUser.email,
+      },
+    });
+
+>>>>>>> 25588736c654058b5f0674c1e906f817e85c8312
   } catch (error) {}
 };
 
@@ -97,6 +110,7 @@ const login = async (req, res) => {
       user,
     });
 
+<<<<<<< HEAD
     return res.status(201).json({
       success: true,
       message: `Register Successful`,
@@ -108,6 +122,29 @@ const login = async (req, res) => {
         role: newUser.role,
       },
     });
+=======
+    const token = jwt.login(
+      {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+      },
+      process.env.JWT_SECRET,
+      {expiresIn: "1d"},
+    );
+
+    res.status(200).json({
+      message: "login successfull",
+      success: true,
+      token,
+      user: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+      },
+    });
+
+>>>>>>> 25588736c654058b5f0674c1e906f817e85c8312
   } catch (error) {
     return res.status(500).json({
       message: `server error${error}`,
