@@ -1,10 +1,15 @@
-import RegisterCard from "./register";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RegisterCard from "./Register";
+import LoginCard from "./LoginCard";
 
 const App = () => {
   return (
-    <div>
-      <RegisterCard />
-    </div>
+  <BrowserRouter> 
+  <Routes>
+    <Route path="/login" element={<LoginCard/>} />
+    <Route path="/signup" element={<RegisterCard />} />
+  </Routes>
+  </BrowserRouter>
   );
 };
 

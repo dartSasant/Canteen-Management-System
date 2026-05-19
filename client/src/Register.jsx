@@ -2,65 +2,57 @@ import React, { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 const RegisterCard = () => {
-  const [user, setuser] = useState("");
-
+  const [username, setusername] = useState("");
+  const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-
   const [visible, setvisible] = useState(false);
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="border-2 rounded-box min-h-100 min-w-100 p-6 border-black border-base-300 space-y-5 shadow-lg bg-base-100 bg-zinc-950/90">
-        <div className="flex flex-col space-y-3">
-          <span className="text-lg text-slate-400 font-semibold">Username</span>
-          <input
-            className="border rounded-box bg-slate-200 text-zinc-950/90 text-lg min-h-10"
-            type="text"
-            onChange={(e) => setuser(e.target.value)}
-            name=""
-            id=""
-            placeholder="Username"
-          />
-        </div>
-        <div className="flex flex-col space-y-3">
-          <span className="text-lg text-slate-400 font-semibold">Email</span>
-          <input
-            className="border rounded-box min-h-10 bg-slate-200 text-zinc-950/90 text-lg"
-            type="email"
-            placeholder="example12@gmail.com"
-          />
-        </div>
-        <div className="flex flex-col space-y-3 relative">
-          <span className="text-lg text-slate-400 font-semibold">Password</span>
-          <input
-            className="border rounded-box min-h-10 bg-slate-200 text-zinc-950/90 text-lg pr-12"
-            type={visible ? "text" : "password"}
-            onChange={(e) => setpassword(e.target.value)}
-            placeholder="Password"
-          />
+    <div className="min-h-screen flex items-center justify-center bg-base-200">
+      <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-96 border p-6 shadow-lg">
+        <legend className="fieldset-legend text-2xl font-bold mb-2">
+          Signup
+        </legend>
+        <label className="label text-sm">username</label>
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setusername(e.target.value)}
+          className="input input-bordered w-full"
+          placeholder="Username"
+        />
 
+        <label className="label text-sm">Email</label>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setemail(e.target.value)}
+          className="input input-bordered w-full"
+          placeholder="Enter your email"
+        />
+        <div className="relative w-full">
+          <label className="label text-sm mt-3">Password</label>
+          <input
+            type={visible ? "text" : "password"}
+            className="input input-bordered w-full pr-10"
+            value={password}
+            onChange={(e) => setpassword(e.target.value)}
+            placeholder="Enter your password"
+          />
           <div
-            className="absolute inset-y-0 right-3 flex items-center pt-7 cursor-pointer text-2xl"
+            className="absolute inset-y-0 right-3 flex items-center pt-8 cursor-pointer text-2xl"
             onClick={() => setvisible(!visible)}
           >
-            {visible ? (
-              <BsEye className="text-black " />
-            ) : (
-              <BsEyeSlash className="text-black" />
-            )}
+            {visible ? <BsEye /> : <BsEyeSlash />}
           </div>
         </div>
-        <div className="flex justify-center">
-          <button className="btn btn-primary mt-5 w-full text-lg">
-            Register
-          </button>
+
+        <button className="btn btn-neutral mt-5 w-full">Register</button>
+
+        <div className="flex justify-center text-lg text-blue-500 pt-4 ">
+          <a href="/login">Login</a>
         </div>
-        <div className="flex justify-center">
-          <a className="text-blue-500 text-xl font-bold" href="">
-            login
-          </a>
-        </div>
-      </div>
+      </fieldset>
     </div>
   );
 };
