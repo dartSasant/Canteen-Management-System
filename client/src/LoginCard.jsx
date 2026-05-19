@@ -38,7 +38,7 @@ const LoginCard = () => {
         <button className="btn btn-neutral mt-5 w-full">Login</button>
 
         <div className="flex justify-center text-lg text-blue-500 pt-4 ">
-          <a href="">Create new account</a>
+          <a href="/signup">Create new account</a>
         </div>
       </fieldset>
     </div>
