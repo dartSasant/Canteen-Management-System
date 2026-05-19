@@ -7,7 +7,7 @@ const signup = async (req, res) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
-      return res.status(404).json({
+      return res.status(400).json({
         message: `Please fill out all feilds`,
         success: false,
       });
@@ -41,7 +41,24 @@ const signup = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "1d" },
     );
-  } catch (error) {}
+
+    return res.status(201).json({
+      message: 'Register succesful',
+      success: true,
+      token,
+      user: {
+        _id: newUser.id,
+        username: newUser.username,
+        email: newUser.email,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message:`Internal Server Error: ${error}`,
+      success: false,
+    });
+  }
+
 };
 
 //login function
@@ -50,16 +67,16 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    if (!user || !password) {
+
+    if (!email || !password) {
       return res.status(400).json({
         message: "Please fill all the feilds",
         success: false,
       });
     }
 
-    // find user
+    const user = await User.findOne({ email });
 
-    const user = await user.findOne({ email });
 
     if (!user) {
       return res.status(404).json({
@@ -79,24 +96,7 @@ const login = async (req, res) => {
       });
     }
 
-    return res.status(200).json({
-      message: "login successfull",
-      success: true,
-      user,
-    });
-
-    return res.status(201).json({
-      success: true,
-      message: `Register Successful`,
-      token,
-      user: {
-        _id: newUser.id,
-        username: newUser.username,
-        email: newUser.email,
-        role: newUser.role,
-      },
-    });
-    const token = jwt.login(
+    const token = jwt.sign(
       {
         _id: user._id,
         username: user.username,
@@ -106,7 +106,7 @@ const login = async (req, res) => {
       {expiresIn: "1d"},
     );
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "login successfull",
       success: true,
       token,
@@ -118,8 +118,10 @@ const login = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: `server error${error}`,
+      message: `server error${error.message}`,
       success: false,
     });
   }
 };
+
+module.exports = {signup, login};
