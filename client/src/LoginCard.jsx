@@ -7,7 +7,7 @@ const LoginCard = () => {
   const [visible, setvisible] = useState(false);
 
   return (
-    <div min-h-screen flex items-center justify-center bg-base-200>
+    <div className="min-h-screen flex items-center justify-center bg-base-200">
       <fieldset className="fieldset bg-base-100 border-base-300 rounded-box w-96 border p-6 shadow-lg">
         <legend className="fieldset-legend text-2xl font-bold mb-2">
           Login
