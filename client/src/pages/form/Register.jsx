@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
+import { registerr } from "../../authhandler/authhandler";
 
 const RegisterCard = () => {
   const [username, setusername] = useState("");
@@ -47,10 +48,15 @@ const RegisterCard = () => {
           </div>
         </div>
 
-        <button className="btn btn-neutral mt-5 w-full">Register</button>
+        <button
+          className="btn btn-neutral mt-5 w-full"
+          onClick={() => registerr(username, email, password)}
+        >
+          Register
+        </button>
 
         <div className="flex justify-center text-lg text-blue-500 pt-4 ">
-          <a href="/login">Login</a>
+          <a href="/">Login</a>
         </div>
       </fieldset>
     </div>
