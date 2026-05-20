@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
+import { login } from "../../authhandler/authhandler";
 
 const LoginCard = () => {
+  const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-
   const [visible, setvisible] = useState(false);
 
   return (
@@ -16,6 +17,8 @@ const LoginCard = () => {
         <label className="label text-sm">Email</label>
         <input
           type="email"
+          value={email}
+          onChange={(e) => setemail(e.target.value)}
           className="input input-bordered w-full"
           placeholder="Enter your email"
         />
@@ -24,6 +27,7 @@ const LoginCard = () => {
           <input
             type={visible ? "text" : "password"}
             className="input input-bordered w-full pr-10"
+            value={password}
             onChange={(e) => setpassword(e.target.value)}
             placeholder="Enter your password"
           />
@@ -35,7 +39,12 @@ const LoginCard = () => {
           </div>
         </div>
 
-        <button className="btn btn-neutral mt-5 w-full">Login</button>
+        <button
+          className="btn btn-neutral mt-5 w-full"
+          onClick={() => login(email, password)}
+        >
+          Login
+        </button>
 
         <div className="flex justify-center text-lg text-blue-500 pt-4 ">
           <a href="/signup">Create new account</a>
