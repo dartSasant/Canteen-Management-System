@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { login } from "../../authhandler/authhandler";
+import { login } from "./authhandler/authhandler";
 
 const LoginCard = () => {
   const [email, setemail] = useState("");
