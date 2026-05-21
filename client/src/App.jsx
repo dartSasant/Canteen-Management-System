@@ -1,7 +1,14 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Approutes from "./routes/pages";
 const App = () => {
-  return <Approutes />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginCard />} />
+        <Route path="/signup" element={<RegisterCard />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;

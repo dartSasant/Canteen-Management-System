@@ -6,13 +6,7 @@ const userRoutes = require("./routes/Auth");
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  }),
-);
+app.use(cors());
 app.use(express.json());
 
 app.use("/api", userRoutes);
@@ -25,4 +19,4 @@ connectToDatabase();
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-});
+});  
