@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { registerr } from "./authhandler/authhandler";
 
 const RegisterCard = () => {
   const [username, setusername] = useState("");
