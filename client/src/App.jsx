@@ -1,11 +1,15 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import Approutes from "./routes/pages";
+import LoginCard from "./LoginCard";
+import RegisterCard from "./Register";
+import Dashboard from "./Dashboard";
+
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginCard />} />
         <Route path="/signup" element={<RegisterCard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
